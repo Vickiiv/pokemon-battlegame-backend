@@ -6,6 +6,7 @@ import { registerSchema, loginSchema } from "../schemas/auth.schema.ts";
 import { env } from "../config/env.ts";
 import type { AuthRequest } from "../middlewares/auth.middleware.ts";
 
+//  Registrieren
 export const register = async (req: Request, res: Response) => {
   const result = registerSchema.safeParse(req.body);
   if (!result.success) {
@@ -28,6 +29,7 @@ export const register = async (req: Request, res: Response) => {
   });
 };
 
+//  Login
 export const login = async (req: Request, res: Response) => {
   const result = loginSchema.safeParse(req.body);
   if (!result.success) {
@@ -64,4 +66,15 @@ export const login = async (req: Request, res: Response) => {
 
 export const me = async (req: AuthRequest, res: Response) => {
   res.status(200).json({ userId: req.userId });
+};
+
+// Logout
+
+export const logout = (req: Request, res: Response) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: !env.isDevelopment,
+    sameSite: "lax",
+  });
+  res.status(200).json({ message: "Erfolgreich ausgeloggt" });
 };
