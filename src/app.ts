@@ -1,26 +1,19 @@
-import mongoose from "mongoose";
+import { env } from "./config/env.ts";
+import { connectToDatabase } from "./config/db.ts";
 import express from "express";
+import cors from "cors";
 
-const mongoUri = process.env.MONGO_URI;
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
-app.listen(3000, () => {
-  console.log("The server running on Port 3000");
-});
+const start = async () => {
+  await connectToDatabase();
 
-if (mongoUri === undefined) {
-  throw new Error("MONGO_URI is missing from .env");
-}
-
-const connect = async () => {
-  try {
-    await mongoose.connect(mongoUri);
-    console.log("Connected to MongoDB!");
-  } catch (error) {
-    console.log("Connection Failed!", error);
-  }
+  app.listen(env.port, () => {
+    console.log(`🚀 Server running on port ${env.port}`);
+  });
 };
 
-connect();
+start();
