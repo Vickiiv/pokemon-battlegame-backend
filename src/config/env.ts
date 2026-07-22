@@ -1,3 +1,5 @@
+import type { SignOptions } from "jsonwebtoken";
+
 const requireEnv = (name: string): string => {
   const value = process.env[name];
   if (!value) {
@@ -9,7 +11,8 @@ const requireEnv = (name: string): string => {
 export const env = {
   mongoUri: requireEnv("MONGO_URI"),
   jwtSecret: requireEnv("JWT_SECRET"),
-  jwtExpiresIn: process.env.JWT_EXPIRES_IN ?? "1h",
+  jwtExpiresIn: (process.env.JWT_EXPIRES_IN ??
+    "1h") as SignOptions["expiresIn"],
   port: Number(process.env.PORT ?? 3000),
   corsOrigin: process.env.CORS_ORIGIN ?? "http://localhost:5173",
   isDevelopment: process.env.NODE_ENV === "development",
