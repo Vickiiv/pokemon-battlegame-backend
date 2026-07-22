@@ -14,7 +14,6 @@
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
-
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
     "module": "preserve",
