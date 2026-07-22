@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.ts";
 import { registerSchema, loginSchema } from "../schemas/auth.schema.ts";
 import { env } from "../config/env.ts";
+import type { AuthRequest } from "../middlewares/auth.middleware.ts";
 
 export const register = async (req: Request, res: Response) => {
   const result = registerSchema.safeParse(req.body);
@@ -49,8 +50,18 @@ export const login = async (req: Request, res: Response) => {
     expiresIn: env.jwtExpiresIn,
   });
 
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: !env.isDevelopment,
+    sameSite: "lax",
+    maxAge: 60 * 60 * 1000,
+  });
+
   res.status(200).json({
-    token,
     user: { id: user._id, name: user.name, email: user.email },
   });
+};
+
+export const me = async (req: AuthRequest, res: Response) => {
+  res.status(200).json({ userId: req.userId });
 };

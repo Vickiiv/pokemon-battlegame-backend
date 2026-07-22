@@ -15,6 +15,7 @@ const scoreSchema = new Schema<IScore>({
   score: {
     type: Number,
     required: true,
+    min: 0,
   },
   date: {
     type: Date,
