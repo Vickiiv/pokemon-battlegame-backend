@@ -29,7 +29,7 @@ const start = async () => {
   await connectToDatabase();
 
   app.listen(env.port, () => {
-    console.log(`🚀 Server running on port ${env.port}`);
+    console.log(`🚀 Server läuft auf Port ${env.port}`);
   });
 };
 

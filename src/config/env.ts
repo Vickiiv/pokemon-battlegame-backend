@@ -3,7 +3,7 @@ import type { SignOptions } from "jsonwebtoken";
 const requireEnv = (name: string): string => {
   const value = process.env[name];
   if (!value) {
-    throw new Error(`❌ Environment variable ${name} is missing from .env!`);
+    throw new Error(`❌ Umgebungsvariable ${name} fehlt in der .env!`);
   }
   return value;
 };

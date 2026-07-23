@@ -9,6 +9,16 @@ export const errorHandler = (
 ) => {
   console.error("🔴 Unerwarteter Fehler:", err);
 
+  if (err.name === "ValidationError") {
+    return res
+      .status(400)
+      .json({ message: "Ungültige Eingabedaten.", details: err.message });
+  }
+
+  if (err.name === "CastError") {
+    return res.status(400).json({ message: "Ungültige ID." });
+  }
+
   res.status(500).json({
     message:
       "Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es später erneut.",
