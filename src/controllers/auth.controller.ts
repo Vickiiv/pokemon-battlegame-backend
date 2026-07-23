@@ -5,12 +5,15 @@ import { User } from "../models/user.model.ts";
 import { registerSchema, loginSchema } from "../schemas/auth.schema.ts";
 import { env } from "../config/env.ts";
 import type { AuthRequest } from "../middlewares/auth.middleware.ts";
+import { z } from "zod";
 
 //  Registrieren
 export const register = async (req: Request, res: Response) => {
   const result = registerSchema.safeParse(req.body);
   if (!result.success) {
-    return res.status(400).json({ errors: result.error.flatten().fieldErrors });
+    return res
+      .status(400)
+      .json({ errors: z.flattenError(result.error).fieldErrors });
   }
 
   const { name, email, password } = result.data;
@@ -33,7 +36,9 @@ export const register = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   const result = loginSchema.safeParse(req.body);
   if (!result.success) {
-    return res.status(400).json({ errors: result.error.flatten().fieldErrors });
+    return res
+      .status(400)
+      .json({ errors: z.flattenError(result.error).fieldErrors });
   }
 
   const { email, password } = result.data;
