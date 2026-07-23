@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import leaderboardRoutes from "./routes/leaderboard.route.ts";
 import { notFoundHandler } from "./middlewares/notFound.middleware.ts";
 import { errorHandler } from "./middlewares/error.middleware.ts";
+import rosterRoutes from "./routes/roster.route.ts";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(cookieParser());
 
 app.use("/auth", authRoutes);
 app.use("/leaderboard", leaderboardRoutes);
+app.use("/roster", rosterRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

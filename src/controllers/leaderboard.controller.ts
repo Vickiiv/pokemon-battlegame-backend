@@ -2,6 +2,7 @@ import type { Response } from "express";
 import type { AuthRequest } from "../middlewares/auth.middleware.ts";
 import { Score } from "../models/score.model.ts";
 import { createScoreSchema } from "../schemas/leaderboard.schema.ts";
+import { z } from "zod";
 
 export const getLeaderboard = async (req: AuthRequest, res: Response) => {
   const scores = await Score.find()
@@ -15,7 +16,9 @@ export const getLeaderboard = async (req: AuthRequest, res: Response) => {
 export const createScore = async (req: AuthRequest, res: Response) => {
   const result = createScoreSchema.safeParse(req.body);
   if (!result.success) {
-    return res.status(400).json({ errors: result.error.flatten().fieldErrors });
+    return res
+      .status(400)
+      .json({ errors: z.flattenError(result.error).fieldErrors });
   }
 
   const newScore = await Score.create({
