@@ -60,7 +60,7 @@ export const login = async (req: Request, res: Response) => {
   res.cookie("token", token, {
     httpOnly: true,
     secure: !env.isDevelopment,
-    sameSite: "lax",
+    sameSite: env.isDevelopment ? "lax" : "none",
     maxAge: 60 * 60 * 1000,
   });
 
@@ -79,7 +79,7 @@ export const logout = (req: Request, res: Response) => {
   res.clearCookie("token", {
     httpOnly: true,
     secure: !env.isDevelopment,
-    sameSite: "lax",
+    sameSite: env.isDevelopment ? "lax" : "none",
   });
   res.status(200).json({ message: "Erfolgreich ausgeloggt" });
 };
