@@ -2,8 +2,6 @@
 
 Backend-API für ein Pokémon-Kampfspiel, gebaut im Rahmen eines Bootcamp-Gruppenprojekts.
 
-🔗 Live-Demo: https://pokemon-frontend-2tdf.onrender.com
-
 🔗 Frontend-Repo: https://github.com/Pe-De-E/pokemon-frontend
 
 ## Tech Stack
