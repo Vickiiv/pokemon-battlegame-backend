@@ -9,7 +9,7 @@ Backend-API für ein Pokémon-Kampfspiel, gebaut im Rahmen eines Bootcamp-Gruppe
 ![Demo](docs/Pokemon-Battlegame-Kampf.gif)
 
 ## Tech Stack
-Node.js · Express · TypeScript · MongoDB · Mongoose · Zod · JWT (httpOnly-Cookies) · Deployment: Render
+Node.js · Express · TypeScript · MongoDB · Mongoose · Zod · JWT (httpOnly-Cookies) 
 
 ## Features
 - Registrierung/Login mit gehashten Passwörtern (bcrypt), JWT-Auth über httpOnly-Cookies
