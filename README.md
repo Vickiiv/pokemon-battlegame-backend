@@ -4,6 +4,10 @@ Backend-API für ein Pokémon-Kampfspiel, gebaut im Rahmen eines Bootcamp-Gruppe
 
 🔗 Frontend-Repo: https://github.com/Pe-De-E/pokemon-frontend
 
+## Demo
+
+![Demo](docs/Pokemon-Battlegame-Kampf.gif)
+
 ## Tech Stack
 Node.js · Express · TypeScript · MongoDB · Mongoose · Zod · JWT (httpOnly-Cookies) · Deployment: Render
 
